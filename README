@@ -1,0 +1,122 @@
+The ListTransfer Control simplifies the transfer of ListItems between two ListControls.
+
+EXAMPLE OF USE
+
+<script runat="server">
+
+	void AddEmployees(object sender, EventArgs args){
+		ListTransferEmployees.CopySelected();
+	}
+
+	void AddAllEmployees(object sender, EventArgs args){
+		ListTransferEmployees.CopyAll();
+	}
+
+	void RemoveEmployees(object sender, EventArgs args){
+		ListTransferEmployees.RemoveSelected();
+	}
+
+	void RemoveAllEmployees(object sender, EventArgs args){
+		ListTransferEmployees.RemoveAll();
+	} 
+	
+	void MoveUp(object sender, EventArgs args){
+		ListTransferEmployees.MoveUpListControlTo();
+	}
+
+	void MoveDown(object sender, EventArgs args){
+		ListTransferEmployees.MoveDownListControlTo();
+	}           
+	
+</script>
+
+...
+
+<asp:ListBox ID="ListBoxEmployees" Runat="server"  
+	SelectionMode="Multiple" 
+	CssClass="listbox"
+	/>
+
+...
+
+<fluent:ListTransfer Runat="server" ID="ListTransferEmployees" 
+	ListControlTo="ListBoxProjectMembers" 
+	ListControlFrom="ListBoxEmployees" 
+	/>
+					
+<asp:LinkButton Runat="server" OnClick="AddEmployees"><img border="0" src="images/right.gif"></asp:LinkButton>
+<asp:LinkButton Runat="server" OnClick="RemoveEmployees"><img border="0" src="images/left.gif"></asp:LinkButton>
+<asp:LinkButton Runat="server" OnClick="AddAllEmployees"><img border="0" src="images/rightAll.gif"></asp:LinkButton>
+<asp:LinkButton Runat="server" OnClick="RemoveAllEmployees"><img border="0" src="images/leftAll.gif"></asp:LinkButton>
+
+...
+
+<asp:ListBox ID="ListBoxProjectMembers" Runat="server" 
+	SelectionMode="Multiple" 
+	CssClass="listbox"  
+	/>
+
+...
+
+<asp:LinkButton Runat="server" OnClick="MoveUp" ><img border="0" src="images/up.gif"></asp:LinkButton>
+<asp:LinkButton Runat="server" OnClick="MoveDown"><img border="0" src="images/down.gif"></asp:LinkButton>
+
+		
+-------------------------------------		
+	
+<asp:ListBox ID="ListBoxLeftColumn" Runat="server"  
+	SelectionMode="Multiple" 
+	CssClass="listbox"
+	/>
+
+...
+
+<fluent:ListTransfer Runat="server" ID="ListTransfer1"
+	EnableClientSide="True" 
+	ListControlTo="ListBoxMiddleColumn" 
+	ListControlFrom="ListBoxLeftColumn" 
+	/>
+	
+<a href="#" onclick="<%= ListTransfer1.ClientMoveUpListControlFrom %>" ><img border="0" src="images/up.gif"></a>
+<a href="#" onclick="<%= ListTransfer1.ClientMoveDownListControlFrom %>"><img border="0" src="images/down.gif"></a>
+
+<a href="#" onclick="<%= ListTransfer1.ClientMoveSelected %>" ><img border="0" src="images/right.gif"></a>
+<a href="#" onclick="<%= ListTransfer1.ClientMoveBackSelected %>"><img border="0" src="images/left.gif"></a>
+<a href="#" onclick="<%= ListTransfer1.ClientMoveAll %>"><img border="0" src="images/rightAll.gif"></a>
+<a href="#" onclick="<%= ListTransfer1.ClientMoveBackAll %>"><img border="0" src="images/leftAll.gif"></a>
+
+...
+
+<asp:ListBox ID="ListBoxMiddleColumn" Runat="server"  
+	SelectionMode="Multiple" 
+	CssClass="listbox"
+	/>
+	
+...	
+
+<fluent:ListTransfer Runat="server" ID="ListTransfer2" 
+	EnableClientSide="True" 
+	ListControlTo="ListBoxRightColumn" 
+	ListControlFrom="ListBoxMiddleColumn" 
+	/>
+	
+<a href="#" onclick="<%= ListTransfer2.ClientMoveUpListControlFrom %>" ><img border="0" src="images/up.gif"></a>
+<a href="#" onclick="<%= ListTransfer2.ClientMoveDownListControlFrom %>"><img border="0" src="images/down.gif"></a>
+
+<a href="#" onclick="<%= ListTransfer2.ClientMoveSelected %>"><img border="0" src="images/right.gif"></a>
+<a href="#" onclick="<%= ListTransfer2.ClientMoveBackSelected %>"><img border="0" src="images/left.gif"></a>
+<a href="#" onclick="<%= ListTransfer2.ClientMoveAll %>"><img border="0" src="images/rightAll.gif"></a>
+<a href="#" onclick="<%= ListTransfer2.ClientMoveBackAll %>"><img border="0" src="images/leftAll.gif"></a>
+
+...
+
+<asp:ListBox ID="ListBoxRightColumn" Runat="server"  
+		SelectionMode="Multiple" 
+		CssClass="listbox"
+		/>
+</asp:ListBox>
+
+...
+
+<a href="#" onclick="<%= ListTransfer2.ClientMoveUpListControlTo %>" ><img border="0" src="images/up.gif"></a>
+<a href="#" onclick="<%= ListTransfer2.ClientMoveDownListControlTo %>"><img border="0" src="images/down.gif"></a>
